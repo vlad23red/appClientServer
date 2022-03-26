@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header>
+    <form>
+        <p style="text-align: left;">
+            <a th:href="index">Работа с файлами |</a>
+            <a th:href="result">Результат |</a>
+            <h1 style="text-align: center;">Клиент серверное приложение</h1>
+        </p>
+    </form>
+</header>
+<hr/>
+<form >
+    <p style="font-size: 1.5em; text-align: center;">Работа с файлами</p>
+    <p style="text-align: center;">Добавьте файл<br />
+    </p>
+</form>
+<p style="text-align: center;">
+<form method="POST" th:action="@{/uploadFiles}" enctype="multipart/form-data" style="text-align: center;">
+    <input type="file" name="files" multiple/> <br/><br/>
+    <button type="submit" name="submitBt">Загрузить</button>
+    <button type="reset" name="resetBt">Очистить</button>
+</form>
+</p>
+<p style="text-align: center;">Результат:</p>
+<hr/>
+<!--/*@thymesVar id="message" type=""*/-->
+<div th:if="${message}">
+    <h2 th:text="${message}"/>
+</div>
+
+</body>
+</html>

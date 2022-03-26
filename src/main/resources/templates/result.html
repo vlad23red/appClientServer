@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header>
+    <form>
+        <p style="text-align: left;">
+            <a th:href="index">Работа с файлами |</a>
+            <a th:href="result">Результат |</a>
+        <h1 style="text-align: center;">Клиент серверное приложение</h1>
+        </p>
+    </form>
+</header>
+<hr/>
+<form style="background-position: center">
+    <p style="font-size: 1.5em; text-align: center;">Результат конкатенирования значений</p>
+    <p style="font-size: 1.5em; text-align: center;">столбцы mcc_code + tr_type</p>
+    <form  method="POST" th:action="processForm">
+        <p><a th:href="export-dataCSVs">Сохранить результат на ПК</a></p>
+        <p><a th:href="save_in_db">Сохранить результат в БД</a></p>
+    </form>
+    <!--/*@thymesVar id="message" type=""*/-->
+    <div th:if="${message}">
+        <h2 th:text="${message}"/>
+    </div>
+    <div style="float:left">
+        <p>
+        <table width="50%" border="1" style="float: left;">
+            <tr>
+                <th>tr_type</th>
+                <th>tr_description</th>
+            </tr>
+            <tr th:each ="trType : ${trTypes}">
+                <td th:utext="${trType.tr_type}">...</td>
+                <td th:utext="${trType.tr_description}">...</td>
+            </tr>
+        </table>
+        <table width="50%" border="1" style="float: right;">
+            <tr>
+                <th>mcc_code</th>
+                <th>mcc_description</th>
+            </tr>
+            <tr th:each ="thMccCode : ${thMccCodes}">
+                <td th:utext="${thMccCode.mcc_code}">...</td>
+                <td th:utext="${thMccCode.mcc_description}">...</td>
+            </tr>
+        </table>
+        </p>
+    </div>
+    </p>
+</form>
+<hr/>
+</body>
+</html>
